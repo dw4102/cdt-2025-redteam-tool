@@ -6,7 +6,7 @@
   hosts: all
   become: yes
   tasks:
-    - name: abcdef
+    - name: Deploy binary from dist/bad_ls to the target system
       shell:
 
 

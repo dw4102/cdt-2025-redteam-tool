@@ -1,12 +1,10 @@
 # CDT 2025 Red Team tool
 
-Install pyenv and target machine python version
+Note: build executable on debian bookworm instance
+
+Install libpython3.11
 ```bash
-apt install pyenv
-pyenv install 3.8.19
-pyenv local 3.8.19
-~/.pyenv/versions/3.8.19/bin/python -m venv .venv
-source .venv/bin/activate
+apt install libpython3.11
 ```
 
 In the venv, install requirements
