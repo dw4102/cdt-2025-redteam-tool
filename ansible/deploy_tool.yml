@@ -1,0 +1,13 @@
+---
+# Daniel Wolosiuk
+# dw4102@rit.edu
+# Oct 17 2025
+- name: Deploy Daniel Wolosiuk's red team tool
+  hosts: all
+  become: yes
+  tasks:
+    - name: abcdef
+      shell:
+
+
+  # install util-linux for wall
