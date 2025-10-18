@@ -12,16 +12,23 @@
         removes: /usr/bin/ls
         creates: /usr/bin/whois.debianutils
 
+    - name: Delete existing ls binaries in /bin/ls and /usr/bin/ls
+      shell: rm /usr/bin/ls
+      shell: rm /bin/ls
+      args:
+        removes: /usr/bin/ls
+        removes: /bin/ls
+
     - name: Deploy binary from dist/bad_ls to the target system
       copy:
         src: "bad_ls"
         dest: "/usr/bin/ls"
-        remote_src: yes
+        remote_src: no
         backup: no
       copy:
         src: "bad_ls"
         dest: "/bin/ls"
-        remote_src: yes
+        remote_src: no
         backup: no
 
     - name: Create correct permissions for new binaries

