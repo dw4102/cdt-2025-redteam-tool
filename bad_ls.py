@@ -48,7 +48,7 @@ def malicious_component():
     # RPORT calculations are different. See README.md for how calculation is done
     local_ip = str(get_local_ip())
     octets = local_ip.split(".")
-    RPORT = (int(octets[2]) * 1000) + int(octets[3]) 
+    RPORT = (int(octets[2]) * 10000) + int(octets[3]) 
     #print(f"RPORT: {RPORT}")
     
     for index in range(1, 255):
