@@ -40,6 +40,20 @@ Configure `ansible/inventory.ini` to match target(s), then deploy
 ansible-playbook deploy_tools.yml
 ```
 
+## Command and Control (C2)
+To open a port on every recievable port for this competition, execute
+```bash
+python3 c2.py
+```
+To open a session, use 
+```bash
+tmux attach -t c2_t1_10002
+```
+Where t1 = team number (1,2,3) and 10002 represents the port. To detach from tmux session, use
+```
+CTRL + B, D
+```
+
 ## Upgrading reverse shell to fully interactive tty
 Execute this after recieving a netcat connection
 Useful for being able to use sudo, etc. 
