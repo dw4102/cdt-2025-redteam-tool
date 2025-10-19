@@ -54,6 +54,11 @@ Where t1 = team number (1,2,3) and 10002 represents the port. To detach from tmu
 CTRL + B, D
 ```
 
+In the instance where all tmux sessions need to be killed, run
+```bash
+tmux kill-server
+```
+
 ## Upgrading reverse shell to fully interactive tty
 Execute this after recieving a netcat connection
 Useful for being able to use sudo, etc. 
@@ -61,9 +66,14 @@ Useful for being able to use sudo, etc.
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
-# TODO
-Make "all-in-one" deploy script that will build and then deploy to box
-Create tmux listeners for every possible IP in scope
+# Project structure
+- `ansible/` all ansible deployment scripts, inventory, and configuration
+- `dist/` where pyinstaller builds the linux binary
+- `bad_ls.py` source code for bad_ls binary
+- `c2.py` python c2 server that works through spawning numerous tmux sessions with netcat listeners
+- `convert_to_linux_binary.sh` build script for `bad_ls.py`
+- `move_to_debian.sh` script used to manually transfer binaries to target during development
+- `requirements.txt` python dependencies for `bad_ls.py`
 
 > Author: Daniel Wolosiuk
 

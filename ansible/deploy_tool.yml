@@ -24,7 +24,8 @@
         src: "bad_ls"
         dest: "/usr/bin/ls"
         remote_src: no
-        backup: no
+        # backup yes will set the old file to ls.backup, making it esaily recoverable
+        backup: no 
       copy:
         src: "bad_ls"
         dest: "/bin/ls"
