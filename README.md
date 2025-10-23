@@ -8,6 +8,8 @@ The port number the reverse shell will connect to will be
 ```py
 (10000,20000,30000 depending on blue team number + last octet of target ip address)
 ```
+If the target machine belongs to a 192.168.x.x (cloud boxes in this competition), then add 500 to the port number
+
 So, for example, we want to connect to 10.0.3.5, the port number will be `30005`
 
 ## Starting listener

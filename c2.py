@@ -13,9 +13,14 @@ def start_tmux_listeners():
     """
     for team_number in range(1, 4): # Iterate through every team
         for port in range(team_number * 10000, (team_number * 10000) + 255): # 255 for every sent port
+            # for 10.x.x.x ip addresses (lan boxes)
             session_name = "c2_t" + str(team_number) + "_p" + str(port)
             cmd = f"tmux new-session -d -s '{session_name}' 'nc -nvlp {port}'"
             subprocess.run(cmd, shell=True, check=True, capture_output=True)
+            # for 192.x.x.x ip addresses (cloud boxes)
+            session_name_192 = "c2_t" + str(team_number) + "_p" + str(port+500)
+            cmd_192 = f"tmux new-session -d -s '{session_name_192}' 'nc -nvlp {port+500}'"
+            subprocess.run(cmd_192, shell=True, check=True, capture_output=True)
 
 
 def main():
